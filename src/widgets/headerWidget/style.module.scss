@@ -1,0 +1,59 @@
+.head {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 0;
+	background: transparent; // Прозрачный фон
+}
+
+.logo img {
+	width: 199px;
+	height: 60px;
+}
+
+.btns {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+}
+
+.loginBtn,
+.searchBtn,
+.notificationsBtn {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 6px;
+	border-radius: 50%;
+	transition: background 0.3s ease;
+}
+
+.loginBtn:hover,
+.searchBtn:hover,
+.notificationsBtn:hover {
+	background-color: rgba(255, 255, 255, 0.1); // легкий эффект при наведении
+}
+
+// Навигация
+.nav {
+	display: flex;
+	gap: 16px;
+	background-color: rgba(255, 255, 255, 0.05); // полупрозрачный тёмный фон
+	padding: 6px 16px;
+	border-radius: 8px;
+}
+
+.link {
+	text-transform: capitalize;
+	font-size: 14px;
+	color: #aaa;
+	transition: color 0.3s;
+	padding: 6px 8px;
+}
+
+.active {
+	background-color: rgba(255, 255, 255, 0.08);
+	color: #fff;
+	border-radius: 6px;
+}
