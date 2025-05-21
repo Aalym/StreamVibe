@@ -4,11 +4,11 @@
 	position: relative;
 
 	&.left .track {
-		animation: scroll-left 60s linear infinite;
+		animation: scroll-left 150s linear infinite;
 	}
 
 	&.right .track {
-		animation: scroll-right 60s linear infinite;
+		animation: scroll-right 150s linear infinite;
 	}
 }
 
@@ -18,8 +18,8 @@
 }
 
 .image {
-	width: 200px;
-	height: auto;
+	width: 190px;
+	height: 180px;
 	object-fit: cover;
 	margin: 0 10px;
 	border-radius: 12px;

@@ -4,10 +4,10 @@
   position: relative;
 }
 .carousel.left .track {
-  animation: scroll-left 60s linear infinite;
+  animation: scroll-left 150s linear infinite;
 }
 .carousel.right .track {
-  animation: scroll-right 60s linear infinite;
+  animation: scroll-right 150s linear infinite;
 }
 
 .track {
@@ -17,8 +17,8 @@
 }
 
 .image {
-  width: 200px;
-  height: auto;
+  width: 190px;
+  height: 180px;
   -o-object-fit: cover;
      object-fit: cover;
   margin: 0 10px;

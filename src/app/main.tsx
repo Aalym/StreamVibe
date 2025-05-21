@@ -1,14 +1,16 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App'
 import { BrowserRouter } from 'react-router-dom'
+import { ParallaxProvider } from 'react-scroll-parallax'
+import App from './App'
+import './index.css'
 
-createRoot(document.getElementById('root')).render(
-	<BrowserRouter>
-		<StrictMode>
-			<App />
-		</StrictMode>
-		,
-	</BrowserRouter>
+createRoot(document.getElementById('root')!).render(
+	<StrictMode>
+		<BrowserRouter>
+			<ParallaxProvider>
+				<App />
+			</ParallaxProvider>
+		</BrowserRouter>
+	</StrictMode>
 )
