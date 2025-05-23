@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Keyboard, Navigation } from 'swiper/modules'
+import { Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import styles from './style.module.scss'
@@ -80,6 +81,7 @@ export default function CategorySwiper() {
 						>
 							←
 						</button>
+						<div className={`swiper-pagination ${styles.bullets}`}></div>
 						<button
 							ref={nextRef}
 							className={`swiper-button-next ${styles.navBtn}`}
@@ -90,7 +92,7 @@ export default function CategorySwiper() {
 				</div>
 
 				<Swiper
-					modules={[Navigation, Keyboard]}
+					modules={[Navigation, Keyboard, Pagination]}
 					spaceBetween={24}
 					slidesPerView={'auto'}
 					className={styles.swiper}
@@ -100,12 +102,12 @@ export default function CategorySwiper() {
 						nextEl: nextRef.current,
 					}}
 					onBeforeInit={swiper => {
-						// Присваиваем кнопки перед инициализацией
 						if (typeof swiper.params.navigation !== 'boolean') {
 							swiper.params.navigation.prevEl = prevRef.current
 							swiper.params.navigation.nextEl = nextRef.current
 						}
 					}}
+					pagination={{ clickable: true, type: 'bullets' }}
 				>
 					{categories.map((cat, index) => (
 						<SwiperSlide key={index} className={styles.slide}>

@@ -27,29 +27,18 @@
 	width: 257px;
 	height: 88px;
 	display: flex;
-	gap: 0.5rem;
-	margin-top: 1rem;
-
-	.swiper-button-prev,
-	.swiper-button-next {
-		position: absolute;
-		display: flex; // или block
-		align-items: center;
-		justify-content: center;
-		opacity: 1;
-		z-index: 10;
-	}
+	justify-content: space-between;
+	background-color: #0f0f0f;
 }
 
 .navBtn {
+	width: 56px;
+	height: 56px;
+	justify-content: space-between;
+	position: relative;
 	background: #2c2c2c;
 	color: #fff;
-	padding: 0.6rem 0.9rem;
-	border-radius: 50%;
-	font-size: 1.25rem;
-	font-weight: bold;
 	cursor: pointer;
-	box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 	transition: background 0.2s ease;
 
 	&:hover {
@@ -105,4 +94,18 @@
 .arrow {
 	font-size: 1.1rem;
 	color: #999;
+}
+
+.bullets {
+	width: 32px;
+	height: 8px;
+	border-radius: 999px;
+	background: #333; // тёмно-серый
+	opacity: 1;
+	transition: background 0.3s;
+	margin: 0 4px;
+}
+
+.bullets-active {
+	background: #f00;
 }

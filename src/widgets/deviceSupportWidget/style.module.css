@@ -1,0 +1,85 @@
+.section {
+  padding: 4rem 2rem;
+  color: #fff;
+}
+
+.header {
+  text-align: start;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+}
+.header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.header p {
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  width: 352px;
+  position: relative;
+  overflow: hidden;
+  background: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #222;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: var(--y, 0px);
+  left: var(--x, 0px);
+  width: 500px;
+  height: 500px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 61, 61, 0.35), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+  transition: top 0.1s ease, left 0.1s ease;
+}
+.card .icon,
+.card h3,
+.card p {
+  position: relative;
+  z-index: 1;
+}
+.card .icon {
+  background: #111;
+  border-radius: 8px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff3d3d;
+  margin-bottom: 1rem;
+}
+.card h3 {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+}
+.card p {
+  font-size: 0.85rem;
+  color: #bbb;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}/*# sourceMappingURL=style.module.css.map */
