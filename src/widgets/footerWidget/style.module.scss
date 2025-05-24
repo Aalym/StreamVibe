@@ -1,0 +1,58 @@
+.footer {
+	background: #0d0d0d;
+	padding: 40px;
+	color: #ccc;
+	font-size: 14px;
+
+	.top {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 40px;
+	}
+
+	.connect {
+		min-width: 150px;
+
+		h4 {
+			color: white;
+			font-weight: 500;
+			margin-bottom: 12px;
+		}
+
+		.icons {
+			display: flex;
+			gap: 10px;
+
+			svg {
+				background: #1a1a1a;
+				padding: 8px;
+				border-radius: 6px;
+				font-size: 18px;
+				cursor: pointer;
+
+				&:hover {
+					background: #e50914;
+				}
+			}
+		}
+	}
+
+	.bottom {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 40px;
+		border-top: 1px solid #222;
+		padding-top: 20px;
+		font-size: 13px;
+
+		a {
+			margin-left: 20px;
+			cursor: pointer;
+
+			&:hover {
+				color: white;
+			}
+		}
+	}
+}

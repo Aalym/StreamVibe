@@ -1,0 +1,31 @@
+.navWrapper {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 40px;
+	justify-content: space-between;
+}
+
+.navSection {
+	min-width: 120px;
+
+	h4 {
+		color: white;
+		font-weight: 500;
+		margin-bottom: 12px;
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+
+		li {
+			margin-bottom: 6px;
+			color: #aaa;
+			cursor: pointer;
+
+			&:hover {
+				color: white;
+			}
+		}
+	}
+}

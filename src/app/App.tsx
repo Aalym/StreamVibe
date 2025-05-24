@@ -5,6 +5,7 @@ import MoviesAndShows from '../pages/movies&Shows/Movies'
 import Support from '../pages/support/Support'
 import Subscriptions from '../pages/subscriptions/Subscribe'
 import Header from '../widgets/headerWidget/Header'
+import Footer from '../widgets/footerWidget/Footer'
 
 export default function App() {
 	return (
@@ -16,6 +17,7 @@ export default function App() {
 				<Route path='/Support' element={<Support />} />
 				<Route path='/Subscribe' element={<Subscriptions />} />
 			</Routes>
+			<Footer />
 		</>
 	)
 }
