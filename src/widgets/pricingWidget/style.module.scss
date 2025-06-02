@@ -1,0 +1,110 @@
+.wrapper {
+	padding: 4rem 2rem;
+	color: white;
+	text-align: center;
+}
+
+.header {
+	margin-bottom: 3rem;
+}
+
+.title {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.subtitle {
+	color: #aaa;
+	margin: 1rem 0;
+}
+
+.toggle {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.toggle button {
+	padding: 0.5rem 1rem;
+	border: 1px solid #333;
+	background: transparent;
+	color: white;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.toggle .active {
+	background: #fff;
+	color: #000;
+}
+
+.plans {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 2rem;
+	margin-top: 2rem;
+}
+
+.card {
+	background: #1b1b1b;
+	padding: 2rem;
+	border-radius: 12px;
+	width: 280px;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.planTitle {
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+}
+
+.planDesc {
+	color: #aaa;
+	font-size: 0.9rem;
+	margin-bottom: 1.5rem;
+}
+
+.price {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 1.5rem;
+}
+
+.price span {
+	font-size: 0.8rem;
+	color: #aaa;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.trial {
+	background: #222;
+	color: white;
+	border: 1px solid #444;
+	padding: 0.5rem;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.choose {
+	background: red;
+	color: white;
+	padding: 0.5rem;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: 0.3s;
+}

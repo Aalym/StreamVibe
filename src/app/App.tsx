@@ -15,7 +15,7 @@ export default function App() {
 				<Route path='/' element={<Home />} />
 				<Route path='/Movies' element={<MoviesAndShows />} />
 				<Route path='/Support' element={<Support />} />
-				<Route path='/Subscribe' element={<Subscriptions />} />
+				<Route path='/subscriptions' element={<Subscriptions />} />
 			</Routes>
 			<Footer />
 		</>
