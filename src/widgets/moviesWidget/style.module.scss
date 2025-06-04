@@ -1,0 +1,122 @@
+.sliderWrapper {
+	margin-bottom: 48px;
+}
+
+.tagContainer {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.borderLine {
+	flex: 1;
+	height: 1px;
+	background-color: #999;
+	opacity: 0.5;
+}
+
+.moviesTag {
+	background-color: #e50914;
+	color: white;
+	font-weight: 600;
+	font-size: 12px;
+	padding: 4px 12px;
+	border-radius: 4px;
+	text-transform: uppercase;
+}
+
+.sliderHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 16px;
+}
+
+.title {
+	font-size: 20px;
+	font-weight: 600;
+	color: #fff;
+}
+
+.sliderControls {
+	display: flex;
+	gap: 8px;
+}
+
+.arrowButton {
+	background-color: #222;
+	color: #fff;
+	border: none;
+	padding: 6px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.arrowButton:hover {
+	background-color: #444;
+}
+
+.slider {
+	display: flex;
+	overflow-x: auto;
+	justify-content: center;
+	scroll-behavior: smooth;
+	gap: 16px;
+	padding-bottom: 6px;
+}
+
+.card {
+	min-width: 240px;
+	height: 342px;
+	background-color: #1b1b1b;
+	border-radius: 8px;
+	overflow: hidden;
+	flex-shrink: 0;
+	color: #fff;
+	transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+	transform: scale(1.03);
+}
+
+.poster {
+	width: 100%;
+	height: 220px;
+	object-fit: cover;
+	border-bottom: 1px solid #333;
+}
+
+.cardTitle {
+	font-size: 16px;
+	font-weight: 500;
+	padding: 8px;
+	padding-bottom: 4px;
+}
+
+.cardMeta {
+	font-size: 13px;
+	padding: 0 8px 8px;
+	color: #aaa;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.metaText {
+	font-size: 13px;
+}
+
+.rating {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	color: #e50914;
+	font-weight: 500;
+}
+
+.starIcon {
+	color: #e50914;
+}
