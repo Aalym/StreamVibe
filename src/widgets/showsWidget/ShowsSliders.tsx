@@ -32,7 +32,7 @@ const MovieSlider = () => {
 		<div className='container'>
 			<div className={styles.border}>
 				<div className={styles.tab}>
-					<span>Movies</span>
+					<span>Shows</span>
 				</div>
 
 				<h2 className={styles.heading}>Our Genres</h2>

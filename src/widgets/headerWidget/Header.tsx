@@ -3,7 +3,11 @@ import styles from './style.module.scss'
 import { NavLink } from 'react-router-dom'
 import Nav from '../../app/navigation/nav'
 
-export default function Header() {
+type HeaderProps = {
+	onMenuToggle: () => void
+}
+
+const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
 	return (
 		<header>
 			<div className='container'>
@@ -15,19 +19,26 @@ export default function Header() {
 					<div className={styles.btns}>
 						<div className={styles.loginBtn}>
 							<svg
+								onClick={onMenuToggle}
+								className={styles.icon}
 								width='25.5'
 								height='25.5'
-								viewBox='0 0 28 30'
+								viewBox='0 0 24 24'
 								fill='none'
 								xmlns='http://www.w3.org/2000/svg'
+								stroke='#ffffff'
 							>
-								<path
-									d='M26.5 28.6686V25.5777C26.5 23.9382 25.7836 22.3658 24.5083 21.2065C23.2331 20.0472 21.5035 19.3959 19.7 19.3959H7.8C5.99653 19.3959 4.26692 20.0472 2.99167 21.2065C1.71643 22.3658 1 23.9382 1 25.5777V28.6686M20.75 8.29745C20.75 11.1781 17.7279 14.4565 14 14.4565C10.2721 14.4565 7.25 11.1781 7.25 8.29745C7.25 5.41678 8.85 1.33154 14 1.33154C19.15 1.33154 20.75 5.41678 20.75 8.29745Z'
-									stroke='white'
-									strokeWidth='1.5'
-									strokeLinecap='round'
-									strokeLinejoin='round'
-								/>
+								<g strokeWidth='0' />
+								<g strokeLinecap='round' strokeLinejoin='round' />
+								<g>
+									<path
+										d='M4 6H20M4 12H20M4 18H20'
+										stroke='#ffffff'
+										strokeWidth='2'
+										strokeLinecap='round'
+										strokeLinejoin='round'
+									/>
+								</g>
 							</svg>
 						</div>
 						<div className={styles.searchBtn}>
@@ -70,3 +81,4 @@ export default function Header() {
 		</header>
 	)
 }
+export default Header

@@ -6,11 +6,19 @@ import Support from '../pages/support/Support'
 import Subscriptions from '../pages/subscriptions/Subscribe'
 import Header from '../widgets/headerWidget/Header'
 import Footer from '../widgets/footerWidget/Footer'
+import Cookie from '../app/cookiePolicy/CustomCookieConsent'
+import SidebarMenu from '../widgets/sidebarMenu/SidebarMenu'
 
-export default function App() {
+const App: React.FC = () => {
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
+	const toggleSidebar = () => setIsSidebarOpen(prev => !prev)
+	const closeSidebar = () => setIsSidebarOpen(false)
+
 	return (
 		<>
-			<Header />
+			<Header onMenuToggle={toggleSidebar} />
+			<SidebarMenu isOpen={isSidebarOpen} onClose={closeSidebar} />
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/MoviesAndShows' element={<MoviesAndShows />} />
@@ -18,6 +26,8 @@ export default function App() {
 				<Route path='/subscriptions' element={<Subscriptions />} />
 			</Routes>
 			<Footer />
+			<Cookie />
 		</>
 	)
 }
+export default App
