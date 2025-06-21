@@ -9,28 +9,48 @@ import styles from './style.module.scss'
 const categories = [
 	{
 		name: 'Action',
-		posters: ['action1.jpg', 'action2.jpg', 'action3.jpg', 'action4.jpg'],
+		posters: [
+			'src/img/poster1.png',
+			'src/img/poster2.png',
+			'src/img/poster3.png',
+			'src/img/poster4.png',
+		],
 	},
 	{
 		name: 'Adventure',
 		posters: [
-			'adventure1.jpg',
-			'adventure2.jpg',
-			'adventure3.jpg',
-			'adventure4.jpg',
+			'src/img/poster5.png',
+			'src/img/poster6.png',
+			'src/img/poster7.png',
+			'src/img/poster8.png',
 		],
 	},
 	{
 		name: 'Comedy',
-		posters: ['comedy1.jpg', 'comedy2.jpg', 'comedy3.jpg', 'comedy4.jpg'],
+		posters: [
+			'src/img/poster9.png',
+			'src/img/poster10.png',
+			'src/img/poster11.png',
+			'src/img/poster12.png',
+		],
 	},
 	{
 		name: 'Drama',
-		posters: ['drama1.jpg', 'drama2.jpg', 'drama3.jpg', 'drama4.jpg'],
+		posters: [
+			'src/img/poster13.png',
+			'src/img/poster14.png',
+			'src/img/poster15.png',
+			'src/img/poster16.png',
+		],
 	},
 	{
 		name: 'Horror',
-		posters: ['horror1.jpg', 'horror2.jpg', 'horror3.jpg', 'horror4.jpg'],
+		posters: [
+			'src/img/poster17.png',
+			'src/img/poster18.png',
+			'src/img/poster19.png',
+			'src/img/poster20.png',
+		],
 	},
 	{
 		name: 'Sci-Fi',
@@ -64,7 +84,7 @@ export default function CategorySwiper() {
 	const nextRef = useRef<HTMLButtonElement | null>(null)
 
 	return (
-		<section className={styles.wrapper}>
+		<section className={styles.wrapper} id='cat'>
 			<div className='container'>
 				<div className={styles.header}>
 					<div>
@@ -79,14 +99,58 @@ export default function CategorySwiper() {
 							ref={prevRef}
 							className={`swiper-button-prev ${styles.navBtn}`}
 						>
-							←
+							<svg
+								viewBox='0 0 24 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+								stroke='#ffffff'
+							>
+								<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+								<g
+									id='SVGRepo_tracerCarrier'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								></g>
+								<g id='SVGRepo_iconCarrier'>
+									{' '}
+									<path
+										d='M6 12H18M6 12L11 7M6 12L11 17'
+										stroke='#ffffff'
+										stroke-width='2'
+										stroke-linecap='round'
+										stroke-linejoin='round'
+									></path>{' '}
+								</g>
+							</svg>
 						</button>
-						<div className={`swiper-pagination ${styles.bullets}`}></div>
+
 						<button
 							ref={nextRef}
 							className={`swiper-button-next ${styles.navBtn}`}
 						>
-							→
+							<svg
+								viewBox='0 0 24 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+								stroke='#ffffff'
+							>
+								<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+								<g
+									id='SVGRepo_tracerCarrier'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								></g>
+								<g id='SVGRepo_iconCarrier'>
+									{' '}
+									<path
+										d='M6 12H18M18 12L13 7M18 12L13 17'
+										stroke='#ffffff'
+										stroke-width='2'
+										stroke-linecap='round'
+										stroke-linejoin='round'
+									></path>{' '}
+								</g>
+							</svg>
 						</button>
 					</div>
 				</div>
@@ -107,7 +171,7 @@ export default function CategorySwiper() {
 							swiper.params.navigation.nextEl = nextRef.current
 						}
 					}}
-					pagination={{ clickable: true, type: 'bullets' }}
+					// pagination={{ clickable: true, type: 'bullets' }}
 				>
 					{categories.map((cat, index) => (
 						<SwiperSlide key={index} className={styles.slide}>
@@ -116,7 +180,7 @@ export default function CategorySwiper() {
 									{cat.posters.map((poster, i) => (
 										<img
 											key={i}
-											src={`/posters/${poster}`}
+											src={poster}
 											alt={`${cat.name}-${i}`}
 											loading='lazy'
 										/>

@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styles from './style.module.scss'
 import MovieCarousel from '../movieCarousel/MovieCarousel'
+import MoviesAndShows from '../../../pages/movies&Shows/Movies'
 
 export default function HomeHero() {
 	return (
@@ -20,7 +22,9 @@ export default function HomeHero() {
 						StreamVibe is the best streaming experience for watching your
 						favorite movies and shows. Anytime. Anywhere.
 					</p>
-					<button>Start Watching Now</button>
+					<Link to='/MoviesAndShows' className={styles.button}>
+						Start Watching Now
+					</Link>
 				</div>
 			</div>
 		</section>

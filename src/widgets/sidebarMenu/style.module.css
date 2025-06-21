@@ -1,0 +1,68 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -350px;
+  width: 250px;
+  height: 100%;
+  background-color: #1c1c1c;
+  padding: 2rem 1rem;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+  transition: left 0.3s ease-in-out;
+  z-index: 1001;
+  color: #fff;
+}
+.sidebar.open {
+  left: 0;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar li {
+  margin-bottom: 1rem;
+}
+
+.burger {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background: transparent;
+  font-size: 2rem;
+  color: white;
+  border: none;
+  z-index: 1002;
+  cursor: pointer;
+}
+
+.closeBtn {
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.action {
+  background-color: #444;
+  border: none;
+  padding: 0.75rem 1rem;
+  color: white;
+  font-size: 1rem;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.action:hover {
+  background-color: #666;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}/*# sourceMappingURL=style.module.css.map */

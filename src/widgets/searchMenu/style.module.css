@@ -1,0 +1,41 @@
+.menu {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background-color: rgba(2, 2, 2, 0.402);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  width: 310px;
+  z-index: 1000;
+}
+
+.input {
+  width: 290px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(25, 22, 22, 0.0117647059);
+  border-radius: 6px;
+}
+
+.button {
+  width: 100%;
+  padding: 8px;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.results {
+  margin-top: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+}
+.results li {
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}/*# sourceMappingURL=style.module.css.map */

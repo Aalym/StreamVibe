@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import styles from './style.module.scss'
 
 const faqItems = [
@@ -62,7 +63,9 @@ export default function FaqWidget() {
 							find answers to the most common questions about StreamVibe.
 						</p>
 					</div>
-					<button className={styles.askBtn}>Ask a Question</button>
+					<Link to='/Support' className={styles.askBtn}>
+						Ask a question
+					</Link>
 				</div>
 
 				<div className={styles.grid}>

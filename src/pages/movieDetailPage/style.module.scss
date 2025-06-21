@@ -1,0 +1,171 @@
+.wrapper {
+	min-height: 100vh;
+	background-size: cover;
+	background-position: top;
+	background-repeat: no-repeat;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to bottom,
+			rgba(0, 0, 0, 0.85),
+			rgba(0, 0, 0, 0.95)
+		);
+		z-index: 1;
+	}
+}
+
+.overlay {
+	position: relative;
+	z-index: 2;
+	padding: 3rem 2rem;
+	width: 100%;
+	max-width: 1400px;
+	display: flex;
+	gap: 3rem;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+.posterBox {
+	flex: 0 0 320px;
+
+	.poster {
+		width: 100%;
+		border-radius: 1rem;
+		box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+	}
+}
+
+.info {
+	flex: 1;
+	color: #fff;
+	max-width: 700px;
+
+	.title {
+		font-size: 3rem;
+		font-weight: 700;
+		margin-bottom: 1rem;
+
+		span {
+			font-weight: 400;
+			color: #aaa;
+			font-size: 2rem;
+		}
+	}
+
+	.genres {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+		margin-bottom: 1rem;
+
+		span {
+			background-color: #222;
+			padding: 0.4rem 0.8rem;
+			border-radius: 0.5rem;
+			font-size: 0.85rem;
+			text-transform: capitalize;
+		}
+	}
+
+	.rating {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-bottom: 1.5rem;
+
+		.starIcon {
+			width: 26px;
+			height: 26px;
+		}
+
+		span {
+			font-size: 1.1rem;
+			font-weight: 500;
+			color: #ffc107;
+		}
+	}
+
+	.description {
+		font-size: 1rem;
+		line-height: 1.6;
+		color: #ccc;
+		margin-bottom: 2rem;
+	}
+
+	.watchBtn {
+		background-color: #e50914;
+		color: white;
+		padding: 0.9rem 2.2rem;
+		border: none;
+		border-radius: 0.5rem;
+		font-size: 1rem;
+		cursor: pointer;
+		transition: background-color 0.3s;
+
+		&:hover {
+			background-color: #b50710;
+		}
+	}
+}
+
+.actorsSection {
+	margin-top: 3rem;
+
+	.actorsTitle {
+		font-size: 1.5rem;
+		font-weight: bold;
+		color: #fff;
+		margin-bottom: 1rem;
+	}
+
+	.actorsList {
+		display: flex;
+		overflow-x: auto;
+		gap: 1rem;
+		padding-bottom: 0.5rem;
+
+		&::-webkit-scrollbar {
+			height: 6px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: #555;
+			border-radius: 4px;
+		}
+	}
+}
+
+.actorCard {
+	flex: 0 0 auto;
+	width: 100px;
+	text-align: center;
+
+	.actorImage {
+		width: 100px;
+		height: 140px;
+		object-fit: cover;
+		border-radius: 8px;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+	}
+
+	.actorName {
+		margin-top: 0.5rem;
+		font-size: 0.85rem;
+		color: #ddd;
+	}
+}
+
+.loading {
+	color: white;
+	text-align: center;
+	margin-top: 5rem;
+	font-size: 1.5rem;
+}

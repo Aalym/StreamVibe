@@ -24,10 +24,11 @@
 }
 
 .nav {
-	width: 257px;
+	width: 150px;
 	height: 88px;
 	display: flex;
 	justify-content: space-between;
+	border-radius: 12px;
 	background-color: #0f0f0f;
 }
 
@@ -37,7 +38,8 @@
 	justify-content: space-between;
 	position: relative;
 	background: #2c2c2c;
-	color: #fff;
+	border-radius: 12px;
+	color: #44444400;
 	cursor: pointer;
 	transition: background 0.2s ease;
 
@@ -108,4 +110,10 @@
 
 .bullets-active {
 	background: #f00;
+}
+
+.swiper-pagination {
+	margin-top: 20px;
+	text-align: center;
+	left: 450px;
 }

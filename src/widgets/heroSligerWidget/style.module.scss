@@ -1,42 +1,48 @@
 .heroSlide {
-	height: 100%;
+	height: 570px;
 	background-size: cover;
 	background-position: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: relative;
 }
 
 .heroContent {
-	background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
+	background: linear-gradient(
+		to top,
+		rgba(20, 20, 20, 0.95),
+		rgba(0, 0, 0, 0.1)
+	);
 	padding: 40px;
 	border-radius: 12px;
-	max-width: 600px;
-	text-align: center;
+	width: 100%;
+	height: 100%;
 	color: white;
+	text-align: center;
 }
 
 .heroContent h2 {
-	justify-content: center;
-	font-size: 32px;
+	margin-top: 240px;
+	font-size: 36px;
 	margin-bottom: 16px;
 }
 
 .heroContent p {
-	font-size: 14px;
+	font-size: 16px;
 	color: #ccc;
 	margin-bottom: 24px;
 }
 
 .heroButtons {
 	display: flex;
-	gap: 10px;
+	gap: 12px;
 	justify-content: center;
 	flex-wrap: wrap;
 }
 
 .heroButtons button {
-	background: rgba(255, 255, 255, 0.1);
+	background: #111;
 	border: none;
 	color: white;
 	padding: 10px 16px;
@@ -46,11 +52,21 @@
 	align-items: center;
 	gap: 8px;
 	font-size: 14px;
+	transition: background 0.3s;
 }
 
+.heroButtons button:hover {
+	background: #333;
+}
+
+.heroButtons button:first-child,
 .playButton {
 	background: red;
 	font-weight: 600;
+}
+
+.playButton:hover {
+	background: darkred;
 }
 
 .swiper-button-next,
@@ -65,4 +81,63 @@
 
 .swiper-pagination-bullet-active {
 	background: red;
+}
+
+/* Modal Styles */
+
+.modalOverlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.85);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+.modalImage {
+	width: 90%;
+	max-width: 900px;
+	height: 500px;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	border-radius: 12px;
+	box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modalPlayButton {
+	background: rgba(255, 255, 255, 0.85);
+	border: none;
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 34px;
+	cursor: pointer;
+	color: black;
+	transition: background 0.3s;
+}
+
+.modalPlayButton:hover {
+	background: white;
+}
+
+.closeButton {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	background: none;
+	border: none;
+	color: white;
+	font-size: 2rem;
+	cursor: pointer;
 }

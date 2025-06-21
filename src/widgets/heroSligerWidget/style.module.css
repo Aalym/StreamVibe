@@ -1,0 +1,74 @@
+.heroSlide {
+  height: 570px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroContent {
+  background: linear-gradient(to top, rgb(20, 20, 20), rgba(0, 0, 0, 0.1));
+  padding: 40px;
+  border-radius: 12px;
+  width: 2000px;
+  height: 100%;
+  text-align: center;
+  color: white;
+}
+
+.heroContent h2 {
+  margin-top: 400px;
+  justify-content: center;
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.heroContent p {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 24px;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.heroButtons button {
+  background: rgb(9, 9, 9);
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.heroButtons button:first-child {
+  background: red;
+}
+
+.playButton {
+  background: red;
+  font-weight: 600;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: white;
+}
+
+.swiper-pagination-bullet {
+  background: #888;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: red;
+}/*# sourceMappingURL=style.module.css.map */

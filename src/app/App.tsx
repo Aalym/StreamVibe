@@ -8,8 +8,13 @@ import Header from '../widgets/headerWidget/Header'
 import Footer from '../widgets/footerWidget/Footer'
 import Cookie from '../app/cookiePolicy/CustomCookieConsent'
 import SidebarMenu from '../widgets/sidebarMenu/SidebarMenu'
+import Baner from '../widgets/banerWidget/BanerWIdget'
+import MovieDetails from '../pages/movieDetailPage/MovieDetailPage'
+import MovieSlider from '../widgets/moviesWidget/MoviesSwipers'
+import useScrollToTopOnNavigate from '../hooks/useScrollToTopOnNavigate'
 
 const App: React.FC = () => {
+	useScrollToTopOnNavigate()
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
 	const toggleSidebar = () => setIsSidebarOpen(prev => !prev)
@@ -23,8 +28,11 @@ const App: React.FC = () => {
 				<Route path='/' element={<Home />} />
 				<Route path='/MoviesAndShows' element={<MoviesAndShows />} />
 				<Route path='/Support' element={<Support />} />
-				<Route path='/subscriptions' element={<Subscriptions />} />
+				<Route path='/Subscriptions' element={<Subscriptions />} />
+				<Route path='/' element={<MovieSlider />} />
+				<Route path='/movie/:id' element={<MovieDetails />} />
 			</Routes>
+			<Baner />
 			<Footer />
 			<Cookie />
 		</>

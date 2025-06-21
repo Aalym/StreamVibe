@@ -9,19 +9,19 @@ export default function PricingWidget() {
 			title: 'Basic Plan',
 			description:
 				'Enjoy an extensive library of movies and shows, featuring a range of content, including recently released titles.',
-			price: billing === 'monthly' ? 9.99 : 99.99,
+			price: billing === 'monthly' ? 9.99 : 119.88,
 		},
 		{
 			title: 'Standard Plan',
 			description:
 				'Access to a wider selection of movies and shows, including most new releases and exclusive content.',
-			price: billing === 'monthly' ? 12.99 : 129.99,
+			price: billing === 'monthly' ? 12.99 : 155.88,
 		},
 		{
 			title: 'Premium Plan',
 			description:
 				'Access to a widest selection of movies and shows, including all new releases and Offline Viewing.',
-			price: billing === 'monthly' ? 14.99 : 149.99,
+			price: billing === 'monthly' ? 14.99 : 179.88,
 		},
 	]
 

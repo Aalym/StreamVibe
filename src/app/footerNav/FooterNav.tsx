@@ -1,3 +1,5 @@
+import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { scroller } from 'react-scroll'
 import styles from './style.module.scss'
 
 const footerData = [
@@ -15,7 +17,7 @@ const footerData = [
 	},
 	{
 		title: 'Support',
-		links: ['Contact Us'],
+		links: ['ContactUs'],
 	},
 	{
 		title: 'Subscription',
@@ -23,7 +25,26 @@ const footerData = [
 	},
 ]
 
+function scrollToSection(sectionId: string) {
+	scroller.scrollTo(sectionId, {
+		duration: 800,
+		delay: 0,
+		smooth: 'easeInOutQuart',
+	})
+}
+
 export default function FooterNav() {
+	const location = useLocation()
+
+	const handleClick = (e: any, link: string) => {
+		e.preventDefault()
+		if (location.pathname !== '/') {
+			window.location.href = `/#${link}`
+		} else {
+			scrollToSection(link)
+		}
+	}
+
 	return (
 		<div className={styles.navWrapper}>
 			{footerData.map((section, index) => (
@@ -31,7 +52,11 @@ export default function FooterNav() {
 					<h4>{section.title}</h4>
 					<ul>
 						{section.links.map((link, i) => (
-							<li key={i}>{link}</li>
+							<li key={i}>
+								<a href={`/#${link}`} onClick={e => handleClick(e, link)}>
+									{link}
+								</a>
+							</li>
 						))}
 					</ul>
 				</div>

@@ -20,12 +20,25 @@
 
 		li {
 			margin-bottom: 6px;
-			color: #aaa;
+			color: #aaa !important;
 			cursor: pointer;
+
+			a {
+				color: white;
+				text-decoration: none;
+			}
 
 			&:hover {
 				color: white;
 			}
 		}
 	}
+}
+.footerLink {
+	color: white;
+	text-decoration: none;
+}
+
+.footerLink:hover {
+	text-decoration: underline;
 }

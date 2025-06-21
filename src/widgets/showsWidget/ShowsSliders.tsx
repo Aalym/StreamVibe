@@ -1,33 +1,76 @@
-import React from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import styles from './style.module.scss'
 
-const genres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Horror']
-const topGenres = ['Action', 'Adventure', 'Comedy', 'Drama']
-
-const trendingNow = [
-	{ title: 'Morbius', duration: '1h 30min', views: '2K' },
-	{ title: 'Kisi Ka Bhai...', duration: '1h 57min', views: '1.5K' },
-	{ title: 'Suraj Pe Mangal...', duration: '2h 10min', views: '1.8K' },
-	{ title: 'Pathaan', duration: '2h 20min', views: '3K' },
-	{ title: 'Ant-Man', duration: '1h 42min', views: '5K' },
-]
-
-const newReleases = [
-	{ title: 'Adipurush', date: '14 April 2023' },
-	{ title: 'Movie 2', date: '22 April 2023' },
-	{ title: 'Sin City', date: '13 April 2023' },
-	{ title: 'Tomorrow War', date: '19 April 2023' },
-	{ title: 'Misfire', date: '11 April 2023' },
-]
-
-const mustWatch = [
-	{ title: 'Kantara', duration: '1h 57min', rating: 5, votes: '20K' },
-	{ title: 'Pushpa 2', duration: '1h 30min', rating: 5, votes: '20K' },
-	{ title: 'Blade Runner 2049', duration: '1h 42min', rating: 5, votes: '20K' },
-	{ title: 'Adipurush', duration: '2h 10min', rating: 5, votes: '20K' },
-]
+const API_KEY = 'd342046d-9238-4c64-b19a-de3fcb5fb2d8'
 
 const MovieSlider = () => {
+	const [genreData, setGenreData] = useState({})
+	const [top10, setTop10] = useState([])
+	const [newReleases, setNewReleases] = useState([])
+	const [mustWatch, setMustWatch] = useState([])
+
+	const genreNames = ['Action', 'Adventure', 'Comedy', 'Drama', 'Horror']
+
+	const genreSliderRef = useRef(null)
+	const top10SliderRef = useRef(null)
+	const newReleasesRef = useRef(null)
+	const mustWatchRef = useRef(null)
+
+	const getRandomPage = () => Math.floor(Math.random() * 20) + 1
+
+	const fetchMovies = async (type = 'TOP_100_POPULAR_FILMS', page = 1) => {
+		const res = await fetch(
+			`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=${type}&page=${page}`,
+			{
+				method: 'GET',
+				headers: {
+					'X-API-KEY': API_KEY,
+					'Content-Type': 'application/json',
+				},
+			}
+		)
+		const data = await res.json()
+		return data.films || []
+	}
+
+	useEffect(() => {
+		const fetchAll = async () => {
+			const genres = {}
+			for (const genre of genreNames) {
+				const movies = await fetchMovies(
+					'TOP_100_POPULAR_FILMS',
+					getRandomPage()
+				)
+				const shuffled = movies.sort(() => 0.5 - Math.random()).slice(0, 4)
+				genres[genre] = shuffled
+			}
+			setGenreData(genres)
+
+			const top = await fetchMovies('TOP_100_POPULAR_FILMS', getRandomPage())
+			setTop10(top.slice(0, 10))
+
+			const newR = await fetchMovies('TOP_AWAIT_FILMS', getRandomPage())
+			setNewReleases(newR.slice(0, 6))
+
+			const must = await fetchMovies('TOP_250_BEST_FILMS', getRandomPage())
+			setMustWatch(must.slice(0, 6))
+		}
+
+		fetchAll()
+	}, [])
+
+	// scroll functions
+	const scroll = (ref, direction) => {
+		if (ref.current) {
+			const scrollAmount = 300
+			ref.current.scrollBy({
+				left: direction === 'left' ? -scrollAmount : scrollAmount,
+				behavior: 'smooth',
+			})
+		}
+	}
+
 	return (
 		<div className='container'>
 			<div className={styles.border}>
@@ -37,96 +80,317 @@ const MovieSlider = () => {
 
 				<h2 className={styles.heading}>Our Genres</h2>
 				<div className={styles.sliderWrapper}>
-					{genres.map(genre => (
-						<div key={genre} className={styles.genreCard}>
-							<div className={styles.genreImages}>
-								{[1, 2, 3, 4].map(i => (
-									<div key={i} className={styles.imageStub} />
-								))}
+					<div className={styles.sliderContent} ref={genreSliderRef}>
+						{Object.keys(genreData).map(genre => (
+							<div key={genre} className={styles.genreCard}>
+								<div className={styles.genreImages}>
+									{genreData[genre].map(movie => (
+										<Link to={`/movie/${movie.filmId}`} key={movie.filmId}>
+											<img
+												src={movie.posterUrlPreview}
+												alt={movie.nameRu || movie.nameEn}
+												className={styles.imageStub}
+											/>
+										</Link>
+									))}
+								</div>
+								<div className={styles.genreLabel}>
+									<span>{genre}</span>
+									<span className={styles.arrow}>→</span>
+								</div>
 							</div>
-							<div className={styles.genreLabel}>
-								<span>{genre}</span>
-								<span className={styles.arrow}>→</span>
-							</div>
-						</div>
-					))}
+						))}
+					</div>
 					<div className={styles.navButtons}>
-						<button>{'←'}</button>
-						<button>{'→'}</button>
+						<button
+							onClick={() => scroll(genreSliderRef, 'left')}
+							className={styles.arrowLeft}
+						>
+							<svg
+								viewBox='0 0 24 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+								stroke='#ffffff'
+							>
+								<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+								<g
+									id='SVGRepo_tracerCarrier'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								></g>
+								<g id='SVGRepo_iconCarrier'>
+									{' '}
+									<path
+										d='M6 12H18M6 12L11 7M6 12L11 17'
+										stroke='#ffffff'
+										stroke-width='2'
+										stroke-linecap='round'
+										stroke-linejoin='round'
+									></path>{' '}
+								</g>
+							</svg>
+						</button>
+						<button
+							onClick={() => scroll(genreSliderRef, 'right')}
+							className={styles.arrowRight}
+						>
+							<svg
+								viewBox='0 0 24 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+								stroke='#ffffff'
+							>
+								<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+								<g
+									id='SVGRepo_tracerCarrier'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								></g>
+								<g id='SVGRepo_iconCarrier'>
+									{' '}
+									<path
+										d='M6 12H18M18 12L13 7M18 12L13 17'
+										stroke='#ffffff'
+										stroke-width='2'
+										stroke-linecap='round'
+										stroke-linejoin='round'
+									></path>{' '}
+								</g>
+							</svg>
+						</button>
 					</div>
 				</div>
 
-				<h2 className={styles.heading}>Popular Top 10 In Genres</h2>
+				<h2 className={styles.heading}>Top 10 in Genres</h2>
 				<div className={styles.sliderWrapper}>
-					{topGenres.map(genre => (
-						<div key={genre} className={styles.genreCard}>
-							<div className={styles.genreImages}>
-								{[1, 2, 3, 4].map(i => (
-									<div key={i} className={styles.imageStub}>
-										{i === 1 && (
-											<span className={styles.topTenBadge}>Top 10 In</span>
-										)}
-									</div>
-								))}
-							</div>
-							<div className={styles.genreLabel}>
-								<span>{genre}</span>
-								<span className={styles.arrow}>→</span>
-							</div>
-						</div>
-					))}
-					<div className={styles.navButtons}>
-						<button>{'←'}</button>
-						<button>{'→'}</button>
+					<div className={styles.sliderContent} ref={top10SliderRef}>
+						{top10.map((movie, i) => (
+							<Link
+								to={`/movie/${movie.filmId}`}
+								key={movie.filmId}
+								className={styles.movieCard}
+							>
+								<img
+									src={movie.posterUrlPreview}
+									alt={movie.nameRu}
+									className={styles.imageStub}
+								/>
+								<span className={styles.topTenBadge}>#{i + 1}</span>
+							</Link>
+						))}
 					</div>
-				</div>
-
-				<h2 className={styles.heading}>Trending Now</h2>
-				<div className={styles.sliderWrapper}>
-					{trendingNow.map((movie, idx) => (
-						<div key={idx} className={styles.movieCard}>
-							<div className={styles.imageStub}></div>
-							<div className={styles.movieInfo}>
-								<span>🕒 {movie.duration}</span>
-								<span>👁 {movie.views}</span>
-							</div>
-						</div>
-					))}
 					<div className={styles.navButtons}>
-						<button>{'←'}</button>
-						<button>{'→'}</button>
+						<button
+							onClick={() => scroll(top10SliderRef, 'left')}
+							className={styles.arrowLeft}
+						>
+							<svg
+								viewBox='0 0 24 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+								stroke='#ffffff'
+							>
+								<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+								<g
+									id='SVGRepo_tracerCarrier'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								></g>
+								<g id='SVGRepo_iconCarrier'>
+									{' '}
+									<path
+										d='M6 12H18M6 12L11 7M6 12L11 17'
+										stroke='#ffffff'
+										stroke-width='2'
+										stroke-linecap='round'
+										stroke-linejoin='round'
+									></path>{' '}
+								</g>
+							</svg>
+						</button>
+						<button
+							onClick={() => scroll(top10SliderRef, 'right')}
+							className={styles.arrowRight}
+						>
+							<svg
+								viewBox='0 0 24 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+								stroke='#ffffff'
+							>
+								<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+								<g
+									id='SVGRepo_tracerCarrier'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								></g>
+								<g id='SVGRepo_iconCarrier'>
+									{' '}
+									<path
+										d='M6 12H18M18 12L13 7M18 12L13 17'
+										stroke='#ffffff'
+										stroke-width='2'
+										stroke-linecap='round'
+										stroke-linejoin='round'
+									></path>{' '}
+								</g>
+							</svg>
+						</button>
 					</div>
 				</div>
 
 				<h2 className={styles.heading}>New Releases</h2>
 				<div className={styles.sliderWrapper}>
-					{newReleases.map((movie, idx) => (
-						<div key={idx} className={styles.movieCard}>
-							<div className={styles.imageStub}></div>
-							<div className={styles.releaseDate}>Released at {movie.date}</div>
-						</div>
-					))}
+					<div className={styles.sliderContent} ref={newReleasesRef}>
+						{newReleases.map(movie => (
+							<Link
+								to={`/movie/${movie.filmId}`}
+								key={movie.filmId}
+								className={styles.movieCard}
+							>
+								<img
+									src={movie.posterUrlPreview}
+									alt={movie.nameRu}
+									className={styles.imageStub}
+								/>
+								<div className={styles.releaseDate}>Year: {movie.year}</div>
+							</Link>
+						))}
+					</div>
 					<div className={styles.navButtons}>
-						<button>{'←'}</button>
-						<button>{'→'}</button>
+						<button
+							onClick={() => scroll(newReleasesRef, 'left')}
+							className={styles.arrowLeft}
+						>
+							<svg
+								viewBox='0 0 24 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+								stroke='#ffffff'
+							>
+								<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+								<g
+									id='SVGRepo_tracerCarrier'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								></g>
+								<g id='SVGRepo_iconCarrier'>
+									{' '}
+									<path
+										d='M6 12H18M6 12L11 7M6 12L11 17'
+										stroke='#ffffff'
+										stroke-width='2'
+										stroke-linecap='round'
+										stroke-linejoin='round'
+									></path>{' '}
+								</g>
+							</svg>
+						</button>
+						<button
+							onClick={() => scroll(newReleasesRef, 'right')}
+							className={styles.arrowRight}
+						>
+							<svg
+								viewBox='0 0 24 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+								stroke='#ffffff'
+							>
+								<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+								<g
+									id='SVGRepo_tracerCarrier'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								></g>
+								<g id='SVGRepo_iconCarrier'>
+									{' '}
+									<path
+										d='M6 12H18M18 12L13 7M18 12L13 17'
+										stroke='#ffffff'
+										stroke-width='2'
+										stroke-linecap='round'
+										stroke-linejoin='round'
+									></path>{' '}
+								</g>
+							</svg>
+						</button>
 					</div>
 				</div>
 
-				<h2 className={styles.heading}>Must - Watch Movies</h2>
+				<h2 className={styles.heading}>Must - Watch Shows</h2>
 				<div className={styles.sliderWrapper}>
-					{mustWatch.map((movie, idx) => (
-						<div key={idx} className={styles.movieCard}>
-							<div className={styles.imageStub}></div>
-							<div className={styles.movieInfo}>
-								<span>🕒 {movie.duration}</span>
-								<span className={styles.stars}>{''.repeat(movie.rating)}</span>
-								<span>{movie.votes}</span>
-							</div>
-						</div>
-					))}
+					<div className={styles.sliderContent} ref={mustWatchRef}>
+						{mustWatch.map(movie => (
+							<Link
+								to={`/movie/${movie.filmId}`}
+								key={movie.filmId}
+								className={styles.movieCard}
+							>
+								<img
+									src={movie.posterUrlPreview}
+									alt={movie.nameRu}
+									className={styles.imageStub}
+								/>
+							</Link>
+						))}
+					</div>
 					<div className={styles.navButtons}>
-						<button>{'←'}</button>
-						<button>{'→'}</button>
+						<button
+							onClick={() => scroll(mustWatchRef, 'left')}
+							className={styles.arrowLeft}
+						>
+							<svg
+								viewBox='0 0 24 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+								stroke='#ffffff'
+							>
+								<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+								<g
+									id='SVGRepo_tracerCarrier'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								></g>
+								<g id='SVGRepo_iconCarrier'>
+									{' '}
+									<path
+										d='M6 12H18M6 12L11 7M6 12L11 17'
+										stroke='#ffffff'
+										stroke-width='2'
+										stroke-linecap='round'
+										stroke-linejoin='round'
+									></path>{' '}
+								</g>
+							</svg>
+						</button>
+						<button
+							onClick={() => scroll(mustWatchRef, 'right')}
+							className={styles.arrowRight}
+						>
+							<svg
+								viewBox='0 0 24 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+								stroke='#ffffff'
+							>
+								<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+								<g
+									id='SVGRepo_tracerCarrier'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								></g>
+								<g id='SVGRepo_iconCarrier'>
+									{' '}
+									<path
+										d='M6 12H18M18 12L13 7M18 12L13 17'
+										stroke='#ffffff'
+										stroke-width='2'
+										stroke-linecap='round'
+										stroke-linejoin='round'
+									></path>{' '}
+								</g>
+							</svg>
+						</button>
 					</div>
 				</div>
 			</div>
